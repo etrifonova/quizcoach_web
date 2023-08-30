@@ -9,70 +9,65 @@
 
   <body>
     <section class="main-area">
-
       <div class="main-container">
-
-      <div class="select-block">
-        <div>
-          <label id="lblmess"></label>
+        <div class="select-block">
+          <div>
+            <label id="lblmess"></label>
+          </div>
+          <div class="select-block-item">
+            <form name="formid">
+              <select name="ddlselect" onchange="getddl()">
+                <option value="">--Выберите часть--</option>
+                <option value="part1">часть 1</option>
+                <option value="part2">часть 2</option>
+                <option value="part3">часть 3</option>
+                <option value="part4">часть 4</option>
+                <option value="part5">часть 5</option>
+                <option value="part6">часть 6</option>
+                <option value="part7">часть 7</option>
+              </select>
+            </form>
+          </div>
         </div>
-        <div class="select-block-item">
-          <form name="formid">
-            <select name="ddlselect" onchange="getddl()">
-              <option value="">--Выберите часть--</option>
-              <option value="part1">часть 1</option>
-              <option value="part2">часть 2</option>
-              <option value="part3">часть 3</option>
-              <option value="part4">часть 4</option>
-              <option value="part5">часть 5</option>
-              <option value="part6">часть 6</option>
-              <option value="part7">часть 7</option>
-            </select>
-          </form>
+
+        <div class="question-block">
+          <div class="out-block question-out"></div>
         </div>
-      </div>
+        <button class="generate button" id="generate" onclick="genQuestion();">
+          вопрос
+        </button>
 
-      <div class="question-block">
-        <div class="out-block out-1"></div>
-      </div>
-      <button class="generate button" id="generate" onclick="genQuestion();">
-        вопрос
-      </button>
-
-      <form class="user-answer-field grid-container1" autocomplete="off">
-        <!-- <label for="user-answer">
+        <form class="user-answer-field grid-container1" autocomplete="off">
+          <!-- <label for="user-answer">
           <span class="title">Ответ:</span>
         </label> -->
-        <input
-          class="input-field user-answer-input"
-          type="text"
-          id="user-answer"
-          name="user-answer"
-        />
-      </form>
+          <input
+            class="input-field user-answer-input"
+            type="text"
+            id="user-answer"
+            name="user-answer"
+          />
+        </form>
 
-      <div class="result-block grid-container">
-        <div class="button-container">
-          <button class="check-button button" onclick="checkForms()">
-            Проверить
-          </button>
+        <div class="result-block grid-container">
+          <div class="button-container">
+            <button class="check-button button" onclick="checkForms()">
+              Проверить
+            </button>
+          </div>
+          <div class="out-block out-2"></div>
         </div>
-        <div class="out-block out-2"></div>
-      </div>
 
-      <div class="score-block grid-container">
-        <div class="score-title">Количество очков:</div>
-        <div class="score-result"></div>
-      </div>
-      
-      
-      <!-- <div class="infitive-block grid-container">
+        <div class="score-block">
+          <div class="score-title">Количество очков:</div>
+          <div class="score-result"></div>
+        </div>
+
+        <!-- <div class="infitive-block grid-container">
         <div class="title">Показать ответ:</div>
         <div class="out-block out-3"></div>
       </div> -->
-
-        
-    </div>
+      </div>
     </section>
   </body>
 

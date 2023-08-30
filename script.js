@@ -1,5 +1,5 @@
 
-let questionDisplay = document.querySelector('.out-1');
+let questionDisplay = document.querySelector('.question-out');
 let scoreBlock = document.querySelector('.score-result');
 let questions;
 let randomElement;

@@ -149,7 +149,7 @@ body {
   font-size: 1.25rem;
 }
 
-/* @media screen and (max-width: 479px) {
+@media screen and (max-width: 479px) {
 
   .main-area {
     margin: 0 auto;
@@ -205,7 +205,7 @@ body {
     margin-top: 5px;
     margin-bottom: -10px;
   }
-} */
+}
 
 /* 
 @media (min-width: 1200рх) {

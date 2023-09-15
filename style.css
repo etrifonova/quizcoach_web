@@ -72,7 +72,7 @@ body {
 
 .question-block {
   height: 200px;
-  margin-top: 20px;
+  margin-top: 0;
   padding: 10px;
   background-color: #ca8978;
   color: white;
@@ -90,7 +90,7 @@ body {
 .out-2 {
   font-size: 1.5rem;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .button, select, option {
@@ -139,6 +139,17 @@ body {
   text-shadow: 1px 1px 2px black;
 }
 
+.bottom-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+
 .result-block, .score-block {
   margin-top: 20px;
   min-height: 1.75rem;
@@ -147,15 +158,16 @@ body {
 
 .score-block {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  padding-bottom: 10px;
+  grid-template-columns: 2fr 1fr;
 }
 
 .score-title {
   font-size: 1.15rem;
 }
 
-.score-result {
-  font-size: 1.25rem;
+.score-block-result {
+  font-size: 1.35rem;
 }
 
 
@@ -194,7 +206,7 @@ body {
   .button {
     width: 120px;
     min-height: 15px;
-    padding: 10px;
+    padding: 7px;
     text-align: center;
   }
 
@@ -222,14 +234,14 @@ body {
     flex-wrap: wrap;
   }
 
-  .score-block {
-    grid-template-columns: 1fr 1fr;
+  .bottom-block-item {
+    grid-template-columns: 2fr 1fr;
   }
 
   .question-out {
     
     margin-top: 5px;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .out-1,
@@ -238,8 +250,8 @@ body {
   }
 
   .out-2 {
+    font-size: 1.25rem;
     margin-top: 5px;
-    margin-bottom: -10px;
   }
 
   #lblmess {

@@ -37,10 +37,7 @@
           вопрос
         </button>
 
-        <form class="user-answer-field grid-container1" autocomplete="off">
-          <!-- <label for="user-answer">
-          <span class="title">Ответ:</span>
-        </label> -->
+        <form class="user-answer-field " autocomplete="off">
           <input
             class="input-field user-answer-input"
             type="text"
@@ -49,7 +46,7 @@
           />
         </form>
 
-        <div class="result-block grid-container">
+        <div class="result-block">
           <div class="button-container">
             <button class="check-button button" onclick="checkForms()">
               Проверить
@@ -58,15 +55,22 @@
           <div class="out-block out-2"></div>
         </div>
 
-        <div class="score-block">
-          <div class="score-title">Количество очков:</div>
-          <div class="score-result"></div>
+        <div class="bottom-block">
+
+          <div class="bottom-block-item score-block">
+            <div class="score-block-title bottom-block-item-title">Количество очков:</div>
+            <div class="score-block-result"></div>
+          </div>
+
+          <div class="bottom-block-item show-answer-block">
+            <button class="show-button button bottom-block-item-title" onclick="showAnswer()">
+              Показать
+            </button>
+            <div class="show-answer-block-result"></div>
+          </div>
+
         </div>
 
-        <!-- <div class="infitive-block grid-container">
-        <div class="title">Показать ответ:</div>
-        <div class="out-block out-3"></div>
-      </div> -->
       </div>
     </section>
   </body>

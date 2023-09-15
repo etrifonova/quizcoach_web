@@ -1,6 +1,6 @@
 
 let questionDisplay = document.querySelector('.question-out');
-let scoreBlock = document.querySelector('.score-result');
+let scoreBlock = document.querySelector('.score-block-result');
 let questions;
 let randomElement;
 let randomQuestion;

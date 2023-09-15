@@ -26,7 +26,7 @@ body {
   left: 50%;
   transform: translateX(-52%) translateY(-50%);
   font-family: "PT Sans", sans-serif;
-  font-size: 32px;
+  /* font-size: 32px; */
   font-weight: 400;
   background-color: white;
   letter-spacing: 0.2rem;
@@ -39,7 +39,7 @@ body {
   margin: auto;
   color: white;
   /* background-color: #282828; */
-  background-image: url('./img/background.png');
+  background-image: url('./img/escapism.png');
   background-size: cover;
   padding: 50px;
   border-radius: 5px;
@@ -50,11 +50,13 @@ body {
 }
 
 .select-block {
+  min-height: 70px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 .select-block-item {
+  min-height: 40px;
   text-align: end;
 }
 
@@ -67,12 +69,6 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
-/* .infitive-block {
-  display: grid;
-  grid-template-columns: 1fr;
-  min-height: 200px;
-} */
 
 .question-block {
   height: 200px;
@@ -88,7 +84,7 @@ body {
   width: 600px;
   display: flex;
   flex-wrap: wrap;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .out-2 {
@@ -108,6 +104,10 @@ body {
   border: solid 1px #282828;
   box-shadow: 0 0 5px 0 #34495e;
   border-radius: 5px;
+}
+
+.generate {
+  margin-top: 10px;
 }
 
 .button:hover {
@@ -164,7 +164,7 @@ body {
 @media screen and (max-width: 479px) {
 
   body {
-    background-image: url('./img/background.png');
+    background-image: url('./img/escapism.png');
     background-repeat: no-repeat;
     background-size: 479px 1000px;
   }
@@ -183,6 +183,7 @@ body {
 
 .select-block-item {
   text-align: start;
+  min-height: 40px;
 }
 
   .grid-container {
@@ -228,7 +229,7 @@ body {
   .question-out {
     
     margin-top: 5px;
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .out-1,

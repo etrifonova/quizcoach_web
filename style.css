@@ -45,6 +45,10 @@ body {
   border-radius: 5px;
 }
 
+.main-container {
+  padding: 20px;
+}
+
 .select-block {
   display: grid;
   grid-template-columns: 1fr 1fr;

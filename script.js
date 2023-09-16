@@ -1,9 +1,11 @@
 
 let questionDisplay = document.querySelector('.question-out');
 let scoreBlock = document.querySelector('.score-block-result');
+let showBlock = document.querySelector('.show-answer-block-result');
 let questions;
 let randomElement;
 let randomQuestion;
+let correctAnswer;
 
 const PART_ONE = [
   {question: 'Для Пушкина ИМ был Данзас. А кто был ИМ для Гарри в первой книге?', answer: 'Рон Уизли'},
@@ -121,18 +123,20 @@ function genQuestion() {
     questionDisplay.innerHTML = randomQuestion;
     message.innerHTML = '';
     userInput.value = '';
+    correctAnswer = randomElement.answer.trim().toLowerCase();
   }
   }
 
   let userInput = document.querySelector('.user-answer-input');
   let message = document.querySelector('.out-2');
   let score = 0;
+  
 
   function checkForms() {
     
-    let correctAnswer = questions.find((element) => {
-      return element.question == randomQuestion
-    }).answer.trim().toLowerCase();
+    // correctAnswer = questions.find((element) => {
+    //   return element.question == randomQuestion
+    // }).answer.trim().toLowerCase();
     
     if (userInput.value.trim().toLowerCase() === correctAnswer) {
         message.innerHTML = 'Верно!';
@@ -147,8 +151,6 @@ function genQuestion() {
 }
 
 // solution found here https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
-
-
 userInput.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
   if (event.key === "Enter") {
@@ -158,3 +160,8 @@ userInput.addEventListener("keypress", function(event) {
     checkForms();
   }
 });
+
+// Show Answer Function
+function showAnswer() {
+  showBlock.innerHTML = correctAnswer;
+}

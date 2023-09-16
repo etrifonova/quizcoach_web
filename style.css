@@ -150,7 +150,7 @@ body {
 
 }
 
-.result-block, .score-block {
+.result-block, .score-block, .show-answer-block {
   margin-top: 20px;
   min-height: 1.75rem;
   text-shadow: 1px 1px 2px black;
@@ -235,7 +235,16 @@ body {
   }
 
   .bottom-block-item {
+    display: grid;
     grid-template-columns: 2fr 1fr;
+  }
+
+  .show-answer-block {
+    min-height: 50px;
+  }
+
+  .show-button {
+    height: 30px;
   }
 
   .question-out {

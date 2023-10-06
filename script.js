@@ -49,7 +49,7 @@ const PART_THREE = [
   {question: 'Сколько раз была сожжена на костре Венделина Странная?', answer: '47'},
   {question: 'Сколько галлеонов выиграл Артур Уизли от "Ежедневного пророка"?', answer: '700'},
   {question: 'Куда отправилась Гермиона во время каникул?', answer: 'Франция'},
-  {question: 'Почему Молли не разрешила Джинни пойти в последнюю пирамиду?', answer: 'скелеты'},
+  {question: 'Из-за каких существ Молли не разрешила Джинни пойти в последнюю пирамиду?', answer: 'скелеты'},
   {question: 'Какие пароли использовались для доступа к портрету Полной Дамы (2 пароля, через запятую)?', answer: 'фортуна майор, флибертигибет'},
   {question: 'Какие пароли использовались для доступа к портрету Сэра Кэдогана (2 пароля, через запятую)?', answer: 'подлый трус, острый кинжал'},
   {question: 'Как называется компания, которую основал Вернон Дурсль?', answer: 'Граннингс'},
@@ -159,10 +159,10 @@ function genQuestion() {
         message.innerHTML = 'Верно!';
         score++;
         scoreBlock.innerHTML = score;
-        console.log(questions.indexOf(randomElement))
         questions.splice(questions.indexOf(randomElement), 1);
+        setTimeout(genQuestion, 1500);
+        // genQuestion();
     } else {
-      console.log(userInput.value)
         message.innerHTML = 'Неверно!'
     }
 }

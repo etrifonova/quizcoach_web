@@ -1,22 +1,15 @@
-@font-face {
-  font-family: "PT Sans";
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/PTSans-Regular.woff2);
-  font-display: swap;
+:root {
+  --color-1: #fbf7f5;
+  --color-2: #04AA6D;
+  --color-3: #042C54;
+  --color-4: #031B34;
+  --color-spacer: #000000;
 }
 
-@font-face {
-  font-family: "PT Sans";
-  font-style: normal;
-  font-weight: 700;
-  src: url(/fonts/PTSans-Bold.woff2);
-  font-display: swap;
-}
-
-html {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -26,26 +19,24 @@ body {
   left: 50%;
   transform: translateX(-52%) translateY(-50%);
   font-family: "PT Sans", sans-serif;
-  /* font-size: 32px; */
   font-weight: 400;
-  background-color: white;
+  background-color: var(--color-4);
   letter-spacing: 0.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.main-area {
-  margin: auto;
   color: white;
-  /* background-color: #282828; */
-  background-image: url('./img/escapism.png');
-  background-size: cover;
+}
+/* 
+.main-area {
+  color: white;
   padding: 50px;
   border-radius: 5px;
-}
+} */
 
 .main-container {
+  width: 100%;
+  margin: 0 5 rem;
   padding: 20px;
 }
 
@@ -53,6 +44,10 @@ body {
   min-height: 70px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.select-block-label {
+  min-width: 400px;
 }
 
 .select-block-item {
@@ -74,7 +69,6 @@ body {
   height: 200px;
   margin-top: 0;
   padding: 10px;
-  background-color: #ca8978;
   color: white;
   text-shadow: 1px 1px 2px black;
   border-radius: 5px;
@@ -93,14 +87,27 @@ body {
   align-items: flex-start;
 }
 
-.button, select, option {
+select, option {
+  min-width: 100px;
+  min-height: 30px;
+  font-family: inherit;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+  background-color: var(--color-1);
+  color: var(--color-spacer);
+  border: solid 1px #282828;
+  box-shadow: 0 0 5px 0 #34495e;
+  border-radius: 5px;
+}
+
+.button {
   min-width: 100px;
   min-height: 30px;
   font-family: inherit;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: white;
-  color: #282828;
+  background-color: var(--color-2);
+  color: white;
   border: solid 1px #282828;
   box-shadow: 0 0 5px 0 #34495e;
   border-radius: 5px;
@@ -174,12 +181,6 @@ body {
 /* MEDIA QUERY */
 
 @media screen and (max-width: 479px) {
-
-  body {
-    background-image: url('./img/escapism.png');
-    background-repeat: no-repeat;
-    background-size: 479px 1000px;
-  }
 
   .main-area {
     background-image: none;

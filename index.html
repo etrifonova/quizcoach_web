@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Гарри Поттер</title>
+    <title>QUIZ COACH</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -11,20 +11,21 @@
     <section class="main-area">
       <div class="main-container">
         <div class="select-block">
-          <div>
-            <label id="lblmess"></label>
+          <div class="select-block-label">
+            <label id="lblmess">Выбранная категория: не выбрано</label>
           </div>
           <div class="select-block-item">
             <form name="formid">
               <select name="ddlselect" onchange="getddl()">
-                <option value="">--Выберите часть--</option>
-                <option value="part1">часть 1</option>
-                <option value="part2">часть 2</option>
-                <option value="part3">часть 3</option>
-                <option value="part4">часть 4</option>
-                <option value="part5">часть 5</option>
-                <option value="part6">часть 6</option>
-                <option value="part7">часть 7</option>
+                <option value="">--Выберите категорию--</option>
+                <option value="cat1">география</option>
+                <option value="cat2">история</option>
+                <option value="cat3">литература</option>
+                <option value="cat4">биология</option>
+                <option value="cat5">химия</option>
+                <option value="cat6">спорт</option>
+                <option value="cat7">известные личности</option>
+                <option value="cat8">бренды</option>
               </select>
             </form>
           </div>

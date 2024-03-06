@@ -17,7 +17,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-52%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   font-family: "PT Sans", sans-serif;
   font-weight: 400;
   background-color: var(--color-4);
@@ -27,32 +27,54 @@ body {
   justify-content: center;
   color: white;
 }
-/* 
-.main-area {
-  color: white;
-  padding: 50px;
-  border-radius: 5px;
-} */
 
 .main-container {
   width: 100%;
-  margin: 0 5 rem;
-  padding: 20px;
-}
-
-.select-block {
-  min-height: 70px;
+  margin: 2rem 7rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 150px 1fr 1fr 1fr;
+  grid-template-areas: /* "cat cat cat cat cat cat cat cat opt opt opt opt" */
+                      "but1 . .q q q q q q . . ."
+                      ". . . a a a a a a . . ."
+                      "but2 . . . . r r r r . . ."
+                      "but3 . . . . sh sh sh sh . . .";
 }
 
-.select-block-label {
-  min-width: 400px;
+.cat {
+  grid-area: cat;
 }
 
-.select-block-item {
-  min-height: 40px;
-  text-align: end;
+.opt {
+  grid-area: opt;
+}
+
+.but {
+  grid-area: but1;
+}
+
+.q {
+  grid-area: q;
+}
+
+.a {
+  grid-area: a;
+}
+
+.but2 {
+  grid-area: but2;
+}
+
+.r {
+  grid-area: r;
+}
+
+.but3 {
+  grid-area: but3;
+}
+
+.sh {
+  grid-area: sh;
 }
 
 .title {
@@ -60,31 +82,11 @@ body {
   letter-spacing: 0.05rem;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
 .question-block {
-  height: 200px;
   margin-top: 0;
-  padding: 10px;
   color: white;
   text-shadow: 1px 1px 2px black;
-  border-radius: 5px;
-}
-
-.question-out {
-  width: 600px;
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 1rem;
-}
-
-.out-2 {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: flex-start;
+  line-height: 1.5rem;
 }
 
 select, option {
@@ -103,6 +105,7 @@ select, option {
 .button {
   min-width: 100px;
   min-height: 30px;
+  height: 2rem;
   font-family: inherit;
   font-weight: bold;
   text-transform: uppercase;
@@ -146,27 +149,10 @@ select, option {
   text-shadow: 1px 1px 2px black;
 }
 
-.bottom-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.result-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-}
-
 .result-block, .score-block, .show-answer-block {
   margin-top: 20px;
   min-height: 1.75rem;
   text-shadow: 1px 1px 2px black;
-}
-
-.score-block {
-  display: grid;
-  padding-bottom: 10px;
-  grid-template-columns: 2fr 1fr;
 }
 
 .score-title {
@@ -194,7 +180,7 @@ select, option {
   grid-template-columns: 1fr;
 }
 
-.select-block-item {
+.select-block-form {
   text-align: start;
   min-height: 40px;
 }

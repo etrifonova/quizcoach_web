@@ -1,184 +1,126 @@
+fetch("https://db.chgk.info/xml")
+  .then((response) => response.text())
+  .then((text) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, "text/xml");
+    const nodesQ = doc.querySelectorAll("Question");
+    const nodesA = doc.querySelectorAll("Answer");
+    let questions = [];
+    for (const nodeQ of nodesQ) {
+      const question = nodeQ.innerHTML;
+      questions.push(question);
+    }
+    let answers = [];
+    for (const nodeA of nodesA) {
+      const answer = nodeA.innerHTML;
+      answers.push(answer);
+    }
+    console.log(questions.length);
+    console.log(answers.length);
 
-let questionDisplay = document.querySelector('.question-out');
-let scoreBlock = document.querySelector('.score-block-result');
-let showBlock = document.querySelector('.show-answer-block-result');
-let questions;
-let randomElement;
-let randomQuestion;
-let correctAnswer;
+    const arrQA = [];
 
-const CAT_ONE = [
-  {question: 'Для Пушкина ИМ был Данзас. А кто был ИМ для Гарри в первой книге?', answer: 'Рон Уизли'},
-  {question: 'Сначала был “капут драконис”, а потом?', answer: 'поросячий пятачок'},
-  {question: 'Несмотря на свое латинское название Mucus ad Nauseam, ЭТО ЗАКЛИНАНИЕ было переведено на русский не самым очевидным образом. Одно из слов отсылает к тому, что было у каждого факультета. Назовите ЭТО ЗАКЛИНАНИЕ двумя словами, начинающимися на одну и ту же букву.', answer: 'проклятие призраков'},
-  {question: 'Данный персонаж упоминается в первой и последних книгах. Про него известно, что он в эпоху раннего средневековья держал в страхе всю Южную Англию.', answer: 'Эмерик Отъявленный'},
-  {question: 'Олух! Пузырь! Остаток! Уловка! - кому принадлежат эти слова?', answer: 'Альбус Дамблдор'},
-  {question: 'О ком это: “Тощее пыльно-серое создание с выпученными горящими глазами”?', answer: 'Миссис Норрис'},
-  {question: 'По мнению близнецов, один из преподавателей носил под одеждой ЕГО в целях защиты. Назовите ЕГО.', answer: 'чеснок'},
-  {question: 'Какой факультет набрал 352 балла?', answer: 'Пуффендуй'},
-  {question: 'Для избавления от чего предназначено зелье со следующим составом: змеиные зубы, рогатый слизень, иглы дикобраза?', answer: 'прыщи'},
-  {question: 'Некое животное является патронусом для волшебника, близкому Гарри, хоть и не одной крови. Также однажду Гарри отверг бутерброд с его мясом. Назовите это животное.', answer: 'горностай'},
-  {question: 'Какой персонаж загадан в этом описании? "Крошечный человечек в высоком фиолетовом цилиндре. По словам профессора Макгонагалл, не отличается особым умом. Но Альбус Дамблдор считает его весьма полезным."', answer: 'Дедалус Дингл'},
-]
+    for (let i = 0; i < 50; i++) {
+      arrQA.push({question: '', answer: ''});
+      arrQA[i].question = questions[i];
+      arrQA[i].answer = answers[i];
+      console.log(arrQA);
+    }
 
-const CAT_TWO = [
-  {question: 'Сколько маглов погубило проклятое ожерелье из "Горбин и Бэркес"?', answer: '19'},
-  {question: 'Как называется процедура избавления от гномов?', answer: 'дегномизация'},
-  {question: 'Сколько машин Ford Anglia было разбито на съемках "Тайной комнаты"?', answer: '14'},
-  {question: 'Что и где появилось у Флитвика из-за сломанной палочки Рона?', answer: 'бородавка на носу'},
-  {question: 'Во что играли Гарри и Рон с близнецами в тот день, когда они отправились в Запретный лес за пауками?', answer: 'взрывающиеся карты'},
-  {question: 'Какого цвета форма любимой команды Рона (в именительном падеже)?', answer: 'оранжевый'},
-  {question: 'Описание какого персонажа: "Жёлтые волосы, зеленоватая кожа. Любит завывать и барабанить по трубам"?', answer: 'Упырь Уизли'},
-  {question: 'Описание какого заведения: "Двухэтажное здание, существует с 1654 года. Здесь Гарри встретился с одним из преподавателей по ЗОТИ. На товары этого заведения наложено Проклятие воришки."?', answer: 'Флориш и Блоттс'},
-  {question: '"Заправь рубашку, неряха!" С каким элементом интерьера связана данная фраза?', answer: 'Зеркало'},
-  {question: 'Какое полное имя у Почти Безголового Ника?', answer: 'Сэр Николас де Мимси-Дельфингтон'},
-  {question: 'Однокурсник Гарри говорит, что родители хотели отдать его в Итон. Как зовут этого однокурсника?', answer: 'Джастин Финч-Флетчли'},
-  {question: 'Миссис Норрис, Колин Криви, Джастин Финч-Флетчли, Пенелопа Кристал, Гермиона. Кто отсутствует в этом списке?', answer: 'Почти Безголовый Ник'},
-  {question: '"риктусемпра, ПРОПУСК, фините инкантатем". Это заклинания из сцены дуэли между Гарри и Драко. Что пропущено?', answer: 'таранталлегра'},
-  {question: 'Кто дразнил Плаксу Миртл, когда она была жива?', answer: 'Оливия Хорнби'},
-  // {question: '', answer: ''},
-  // {question: '', answer: ''},
-  // {question: '', answer: ''},
-  // {question: '', answer: ''}
-]
+    let questionDisplay = document.querySelector(".question-out");
+    let scoreBlock = document.querySelector(".score-block-result");
+    let showBlock = document.querySelector(".show-answer-block-result");
+    const generateButton = document.querySelector(".generate");
+    const checkButton = document.querySelector(".check-button");
+    const showButton = document.querySelector(".show-button");
+    let randomElement;
+    let randomQuestion;
+    let correctAnswer;
 
-const CAT_THREE = [
-  {question: 'Как называется магический прибор, используемый волшебниками для предупреждения об опасности?', answer: 'вредноскоп'},
-  {question: 'Набор по уходу за чем подарила Гермиона Гарри на день рождения?', answer: 'метла'},
-  {question: 'Какой учебник читает Гарри в начале "Узника Азкабана"?', answer: 'история магии'},
-  {question: 'Сколько раз была сожжена на костре Венделина Странная?', answer: '47'},
-  {question: 'Сколько галлеонов выиграл Артур Уизли от "Ежедневного пророка"?', answer: '700'},
-  {question: 'Куда отправилась Гермиона во время каникул?', answer: 'Франция'},
-  {question: 'Из-за каких существ Молли не разрешила Джинни пойти в последнюю пирамиду?', answer: 'скелеты'},
-  {question: 'Какие пароли использовались для доступа к портрету Полной Дамы (2 пароля, через запятую)?', answer: 'фортуна майор, флибертигибет'},
-  {question: 'Какие пароли использовались для доступа к портрету Сэра Кэдогана (2 пароля, через запятую)?', answer: 'подлый трус, острый кинжал'},
-  {question: 'Как называется компания, которую основал Вернон Дурсль?', answer: 'Граннингс'},
-  {question: 'Какова приблизительная скорость в километрах в час, согласно harrypotter.fandom.com, у Ночного рыцаря?', answer: '7000'},
-  {question: 'Сколько стоит проезд на Ночном рыцаре от пригорода Лондона, Литтл Уингинга, до центра Лондона?', answer: '11 сиклей'},
-  {question: 'Под каким числом Гарри жил в Дырявом котле?', answer: '11'},
-  {question: 'Как называется игра, где используются заколдованные камушки и иногда драгоценные металлы?', answer: 'плюй-камни'},
-  {question: 'Как называется зоомагазин в Косом переулке?', answer: 'Волшебный зверинец'},
-  {question: 'В каком месте Косого переулка Гарри встретил Гермиону и Рона? (полное название)', answer: 'Кафе-мороженое Флориана Фортескью'},
-  {question: 'Кто стал причиной для строительства Визжащей хижины?', answer: 'Римус Люпин'},
-  {question: 'Когда произойти страшному событию для Лаванды Браун, согласно профессору Трелони? (число и месяц)', answer: '16 октября'},
-  {question: 'Кого следует избегать Парвати Патил, согласно профессору Трелони?', answer: 'рыжих'},
-  {question: 'Какое заклинание использовал Люпин, чтобы извлечь жвачку, которой Пивз залепил замочную скважину?', answer: 'ваддивази'},
-  {question: 'Кто или что является богартом Дина Томаса? (одно слово)', answer: 'рука'},
-  {question: 'Кто или что является богартом Римуса Люпина? (одно слово)', answer: 'луна'}
-]
+    generateButton.onclick = function genQuestion() {
+      if (arrQA.length === 0) {
+        questionDisplay.innerHTML = "Вопросы закончились";
+      } else {
+        randomElement = arrQA.map((element) => element)[
+          Math.floor(Math.random() * arrQA.length)
+        ];
+        randomQuestion = randomElement.question;
+        questionDisplay.innerHTML = randomQuestion;
+        message.innerHTML = "";
+        userInput.value = "";
+        correctAnswer = randomElement.answer.trim().slice(0, randomElement.answer.length - 1).toLowerCase();
+      }
+    };
 
-const CAT_FOUR = [
-  {question: 'В каком городке находится особняк Рэддлов?', answer: 'Литтл Хэнглтон'},
-  {question: 'Как называется магловский трактир в Литтл Хэнглтоне?', answer: 'висельник'},
-  {question: 'Как зовут садовника Рэддлов?', answer: 'Фрэнк Брайс'},
-]
+    let userInput = document.querySelector(".user-answer-input");
+    let message = document.querySelector(".out-2");
+    let score = 0;
 
-const CAT_FIVE = [
-  {question: 'Нимфадора Тонкс воспользовалась ИМ  в доме Дурслей, чтобы убрать из клетки Букли помет и перья. ИМ же воспользовалась Джинни Уизли, чтобы убрать Смердящий сок с лица и груди Гарри Поттера. Догадавшись, о чем речь, напишите слово для его вызова.', answer: 'Экскуро'},
-  {question: 'Как называется заклинание для передвижения предметов по воздуху?', answer: 'локомотор'},
-  {question: 'Какое заклятие Миссис Уизли наложила на кухонную дверь?', answer: 'заклятие недосягаемости'},
-]
-
-const CAT_SIX = [
-  {question: 'Некоему персонажу из первой части книги пришлось значительно больше времени проводить дома по этой причине. Назовите эту причину двумя словами.', answer: 'заклятие империус'},
-  {question: 'ОН назван в честь некоего города в английском графстве Девоне, на левой стороне маленькой реки Аксе. Также известно, что ОН пострадал от некоторых действий Корнелиуса Фаджа. Назовите ЕГО.', answer: 'Аксминстерский ковер'},
-  {question: 'Кто так описан: «В густой гриве рыжевато-каштановых волос и в кустистых бровях виднелись седые пряди, из-за очков в проволочной оправе смотрели пронзительные желтые глаза, а в движениях, хоть он и прихрамывал, сквозила своеобразная гибкая, размашистая грация.»', answer: 'Руфус Скримджер'},
-]
-
-const CAT_SEVEN = [
-  {question: 'Какую метлу получил Рон за то, что стал старостой?', answer: 'Чистомет-11'},
-  {question: '«музыкальная шкатулка, ___________, несколько старинных печатей; и, наконец, орден Мерлина первой степени». Что пропущено в этом списке?', answer: 'медальон'},
-  {question: '«Похоже, что ОНО читает мысли или, по крайней мере, настроение своей владелицы, поскольку владелица ЕМУ ничего не диктует.» Назовите ЕГО тремя словами.', answer: 'прытко пишущее перо'},
-]
-
-
-function getddl() {
-  let x = formid.ddlselect[formid.ddlselect.selectedIndex].value;
-  document.getElementById('lblmess').innerHTML=("Выбранная категория: " + formid.ddlselect[formid.ddlselect.selectedIndex].text);
-  console.log(x);
-  switch(x) {
-    case 'cat1':
-      questions = CAT_ONE;
-      break;
-  
-    case 'cat2':
-      questions = CAT_TWO;
-      break;
-  
-    case 'cat3':
-      questions = CAT_THREE;
-      break;
-  
-    case 'cat4':
-      questions = CAT_FOUR;
-      break;
-  
-    case 'cat5':
-      questions = CAT_FIVE;
-      break;
-  
-    case 'cat6':
-      questions = CAT_SIX;
-      break;
-  
-    case 'cat7':
-      questions = CAT_SEVEN;
-      break;
-  
-    default:
-      questions = PART_ONE;
-  }
-}
-
-function genQuestion() {
-
-  if (questions.length === 0) {
-    questionDisplay.innerHTML = 'Вопросы закончились'
-  } else {
-    randomElement = questions.map(element => element)[Math.floor(Math.random()*questions.length)];
-    randomQuestion = randomElement.question;
-    questionDisplay.innerHTML = randomQuestion;
-    message.innerHTML = '';
-    userInput.value = '';
-    correctAnswer = randomElement.answer.trim().toLowerCase();
-  }
-  }
-
-  let userInput = document.querySelector('.user-answer-input');
-  let message = document.querySelector('.out-2');
-  let score = 0;
-  
-
-  function checkForms() {
-    
-    // correctAnswer = questions.find((element) => {
-    //   return element.question == randomQuestion
-    // }).answer.trim().toLowerCase();
-    
-    if (userInput.value.trim().toLowerCase() === correctAnswer) {
-        message.innerHTML = 'Верно!';
+    checkButton.onclick = function checkForms() {
+      if (userInput.value.trim().toLowerCase() === correctAnswer) {
+        message.innerHTML = "Верно!";
         score++;
         scoreBlock.innerHTML = score;
         questions.splice(questions.indexOf(randomElement), 1);
         setTimeout(genQuestion, 1500);
         // genQuestion();
-    } else {
-        message.innerHTML = 'Неверно!'
+      } else {
+        message.innerHTML = "Неверно!";
+      }
     }
-}
 
-// solution found here https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
-userInput.addEventListener("keypress", function(event) {
-  // If the user presses the "Enter" key on the keyboard
-  if (event.key === "Enter") {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    checkForms();
-  }
-});
+    userInput.addEventListener("keypress", function (event) {
+      // If the user presses the "Enter" key on the keyboard
+      if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        checkForms();
+      }
+    });
 
-// Show Answer Function
-function showAnswer() {
-  showBlock.innerHTML = correctAnswer;
-}
+    // Show Answer Function
+    showButton.onclick = function showAnswer() {
+      showBlock.innerHTML = correctAnswer;
+    }
+
+    // function getddl() {
+    //   let x = formid.ddlselect[formid.ddlselect.selectedIndex].value;
+    //   document.getElementById("select-block-label").innerHTML =
+    //     "Выбранная категория: " +
+    //     formid.ddlselect[formid.ddlselect.selectedIndex].text;
+    //   console.log(x);
+    //   switch (x) {
+    //     case "cat1":
+    //       questions = CAT_ONE;
+    //       break;
+
+    //     case "cat2":
+    //       questions = CAT_TWO;
+    //       break;
+
+    //     case "cat3":
+    //       questions = CAT_THREE;
+    //       break;
+
+    //     case "cat4":
+    //       questions = CAT_FOUR;
+    //       break;
+
+    //     case "cat5":
+    //       questions = CAT_FIVE;
+    //       break;
+
+    //     case "cat6":
+    //       questions = CAT_SIX;
+    //       break;
+
+    //     case "cat7":
+    //       questions = CAT_SEVEN;
+    //       break;
+
+    //     default:
+    //       questions = PART_ONE;
+    //   }
+    // }
+  });

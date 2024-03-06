@@ -8,37 +8,41 @@
   </head>
 
   <body>
-    <section class="main-area">
-      <div class="main-container">
-        <div class="select-block">
-          <div class="select-block-label">
-            <label id="lblmess">Выбранная категория: не выбрано</label>
-          </div>
-          <div class="select-block-item">
-            <form name="formid">
-              <select name="ddlselect" onchange="getddl()">
-                <option value="">--Выберите категорию--</option>
-                <option value="cat1">география</option>
-                <option value="cat2">история</option>
-                <option value="cat3">литература</option>
-                <option value="cat4">биология</option>
-                <option value="cat5">химия</option>
-                <option value="cat6">спорт</option>
-                <option value="cat7">известные личности</option>
-                <option value="cat8">бренды</option>
-              </select>
-            </form>
-          </div>
-        </div>
+    <div class="main-container">
+      
+      <!-- <div class="select-block-label cat">
+        <label id="select-block-label">Выбранная категория: не выбрано</label>
+      </div> -->
 
-        <div class="question-block">
-          <div class="out-block question-out"></div>
-        </div>
-        <button class="generate button" id="generate" onclick="genQuestion();">
-          вопрос
-        </button>
+      <!-- <div class="select-block-form opt">
+        <form name="formid">
+          <select name="ddlselect" onchange="getddl()">
+            <option value="">--Выберите категорию--</option>
+            <option value="cat1">география</option>
+            <option value="cat2">история</option>
+            <option value="cat3">литература</option>
+            <option value="cat4">биология</option>
+            <option value="cat5">химия</option>
+            <option value="cat6">спорт</option>
+            <option value="cat7">известные личности</option>
+            <option value="cat8">бренды</option>
+          </select>
+        </form>
+      </div> -->
 
-        <form class="user-answer-field " autocomplete="off">
+      <button
+        class="generate button but1"
+        id="generate"
+      >
+        вопрос
+      </button>
+
+      <div class="question-block q">
+        <div class="out-block question-out"></div>
+      </div>
+
+      <div class="user-answer-form a">
+        <form class="user-answer-field" autocomplete="off">
           <input
             class="input-field user-answer-input"
             type="text"
@@ -46,35 +50,31 @@
             name="user-answer"
           />
         </form>
+      </div>
 
+      <button class="check-button button but2" onclick="checkForms()">
+            Проверить
+      </button>
+      
+      <div class="out-block out-2 r"></div>
 
-        <div class="bottom-block">
-
-          <div class="bottom-block-item result-block">
-            <div class="button-container">
-              <button class="check-button button" onclick="checkForms()">
-                Проверить
-              </button>
-            </div>
-            <div class="out-block out-2"></div>
+        <!-- <div class="bottom-block-item score-block">
+          <div class="score-block-title bottom-block-item-title">
+            Количество очков:
           </div>
+          <div class="score-block-result"></div>
+        </div> -->
 
-          <div class="bottom-block-item score-block">
-            <div class="score-block-title bottom-block-item-title">Количество очков:</div>
-            <div class="score-block-result"></div>
-          </div>
+      <button class="show-button button bottom-block-item-title but3"
+            onclick="showAnswer()"
+          >
+            Показать
+          </button>
 
-          <div class="bottom-block-item show-answer-block">
-            <button class="show-button button bottom-block-item-title" onclick="showAnswer()">
-              Показать
-            </button>
-            <div class="show-answer-block-result"></div>
-          </div>
-
-        </div>
+      <div class="show-answer-block-result sh"></div>
 
       </div>
-    </section>
+    </div>
   </body>
 
   <script src="script.js"></script>

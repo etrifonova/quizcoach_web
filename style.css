@@ -33,7 +33,7 @@ body {
   margin: 2rem 7rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 150px 1fr 1fr 1fr;
+  grid-template-rows: 200px 1fr 1fr 1fr;
   grid-template-areas: /* "cat cat cat cat cat cat cat cat opt opt opt opt" */
                       "but1 . .q q q q q q . . ."
                       ". . . a a a a a a . . ."
